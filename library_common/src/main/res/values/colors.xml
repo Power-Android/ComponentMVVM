@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--app内容的主色调-->
+    <color name="colorAccent">#1676FF</color>
+    <!--app内容主色调按压色-->
+    <color name="colorAccentDark">#1636FF</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_99">#99FFFFFF</color>
+    <color name="white_20">#20FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_8">#88000000</color>
+    <color name="transparent_6">#66000000</color>
+
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#77000000</color>
+    <color name="colorPrimaryDark21">#77000000</color>
+
+
+
+</resources>

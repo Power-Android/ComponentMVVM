@@ -1,0 +1,124 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'maven' // Maven 插件
+}
+
+android {
+    compileSdkVersion rootProject.ext.android['compileSdkVersion']
+    buildToolsVersion rootProject.ext.android['buildToolsVersion']
+
+    defaultConfig {
+        if (singleModule.toBoolean()) {
+            minSdkVersion rootProject.ext.android['minSdkVersion']
+            targetSdkVersion rootProject.ext.android['targetSdkVersion']
+            versionCode rootProject.ext.android['versionCode']
+            versionName rootProject.ext.android['versionName']
+
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            }
+        }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        kotlinOptions {
+            jvmTarget = '1.8'
+        }
+
+        sourceSets {
+            main {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+
+        buildFeatures {
+            viewBinding = true
+        }
+    }
+}
+
+dependencies {
+    api rootProject.ext.support["appcompat"]
+    api rootProject.ext.support["material"]
+    api rootProject.ext.support["constraint_layout"]
+    testApi rootProject.ext.support["junit"]
+    //kotlin
+    api rootProject.ext.support["kotlin_lib"]
+    api rootProject.ext.support["kotlin_core"]
+    //jetpack
+    api rootProject.ext.support["viewmodel"]
+    api rootProject.ext.support["lifecycle"]
+    api rootProject.ext.support["livedata"]
+    api rootProject.ext.support["hilt"]
+    kapt rootProject.ext.support["hilt_compiler"]
+    api rootProject.ext.support["room"]
+    api rootProject.ext.support["room_compiler"]
+    //协程
+    api rootProject.ext.support["coroutines_core"]
+    api rootProject.ext.support["coroutines_android"]
+    //dependencies
+    api rootProject.ext.dependencies["multidex"]
+    api rootProject.ext.dependencies["activity"]
+    api rootProject.ext.dependencies["fragment"]
+    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["glide"]
+    kapt rootProject.ext.dependencies["glide_compiler"]
+    api rootProject.ext.dependencies["transformations"]
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["okhttpLogging"]
+    api rootProject.ext.dependencies["PersistentCookieJar"]
+    api rootProject.ext.dependencies["rxhttp"]
+    kapt rootProject.ext.dependencies["rxhttp_compiler"]
+    api rootProject.ext.dependencies["rxlife_coroutine"]
+    api rootProject.ext.dependencies["refresh_layout"]
+    api rootProject.ext.dependencies["refresh_header_classics"]
+    api rootProject.ext.dependencies["refresh_footer_classics"]
+    api rootProject.ext.dependencies["roundedImageview"]
+    api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    api rootProject.ext.dependencies["PictureSelector"]
+    api rootProject.ext.dependencies["PickerView"]
+    api rootProject.ext.dependencies["banner"]
+    api rootProject.ext.dependencies["anyLayer"]
+    api rootProject.ext.dependencies["utilCode"]
+    api rootProject.ext.dependencies["loadingView"]
+    api rootProject.ext.dependencies["flexbox"]
+    api rootProject.ext.dependencies["viewpager2"]
+    api rootProject.ext.dependencies["magicIndicator"]
+    api rootProject.ext.dependencies["eventbus"]
+    api rootProject.ext.dependencies["hotfix"]
+    api rootProject.ext.dependencies["arouter_api"]
+    kapt rootProject.ext.dependencies["arouter_compiler"]
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // url：仓库路径
+            // userName：账号名
+            // password：密码
+            repository(url: "http://127.0.0.1:8081/repository/maven-releases/"){
+                authentication(userName: "admin", password: "Power137955..")
+            }
+
+            pom.groupId = "com.yuanxin.common"
+            pom.artifactId = "maven"
+            pom.version = "v1.0.0"
+        }
+    }
+}
